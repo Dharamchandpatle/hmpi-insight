@@ -8,33 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Environmental Professional Theme */
+    --background: 215 25% 97%;
+    --foreground: 215 20% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 20% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 20% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep Blue Primary - Professional & Water-related */
+    --primary: 215 85% 45%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 215 75% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Teal Secondary - Environmental & Safe */
+    --secondary: 180 45% 92%;
+    --secondary-foreground: 180 85% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 15% 94%;
+    --muted-foreground: 215 12% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Environmental Accent - Fresh & Clean */
+    --accent: 165 85% 88%;
+    --accent-foreground: 165 85% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Pollution Indicators */
+    --safe: 142 75% 45%;
+    --safe-foreground: 0 0% 98%;
+    --moderate: 35 90% 55%;
+    --moderate-foreground: 0 0% 98%;
+    --high-pollution: 355 85% 55%;
+    --high-pollution-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 355 85% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 15% 88%;
+    --input: 215 15% 92%;
+    --ring: 215 85% 45%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 85% 45%), hsl(215 75% 55%));
+    --gradient-environmental: linear-gradient(135deg, hsl(165 85% 45%), hsl(180 75% 45%));
+    --gradient-background: linear-gradient(180deg, hsl(215 25% 98%), hsl(215 20% 95%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(215 15% 98%));
+
+    /* Shadows */
+    --shadow-environmental: 0 10px 30px -10px hsl(215 85% 45% / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(215 25% 25% / 0.1);
+    --shadow-glow: 0 0 30px hsl(215 75% 55% / 0.3);
 
     --radius: 0.5rem;
 
@@ -56,33 +80,54 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark Environmental Theme */
+    --background: 215 25% 8%;
+    --foreground: 215 15% 88%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 10%;
+    --card-foreground: 215 15% 88%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 10%;
+    --popover-foreground: 215 15% 88%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 215 75% 55%;
+    --primary-foreground: 215 25% 8%;
+    --primary-glow: 215 85% 65%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 25% 15%;
+    --secondary-foreground: 215 15% 88%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 15% 55%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 165 75% 35%;
+    --accent-foreground: 215 15% 88%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* Dark Mode Pollution Indicators */
+    --safe: 142 65% 45%;
+    --safe-foreground: 0 0% 98%;
+    --moderate: 35 80% 55%;
+    --moderate-foreground: 0 0% 98%;
+    --high-pollution: 355 75% 55%;
+    --high-pollution-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive: 355 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 25% 18%;
+    --input: 215 25% 15%;
+    --ring: 215 75% 55%;
+
+    /* Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 75% 55%), hsl(215 85% 65%));
+    --gradient-environmental: linear-gradient(135deg, hsl(165 75% 35%), hsl(180 65% 35%));
+    --gradient-background: linear-gradient(180deg, hsl(215 25% 8%), hsl(215 25% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(215 25% 10%), hsl(215 25% 8%));
+
+    /* Dark Shadows */
+    --shadow-environmental: 0 10px 30px -10px hsl(215 75% 55% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 30px hsl(215 85% 65% / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +145,70 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-background to-background/95 text-foreground;
+    background-image: var(--gradient-background);
   }
+}
+
+/* Environmental Animations & Utilities */
+@layer utilities {
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-environmental {
+    background: var(--gradient-environmental);
+  }
+  
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .shadow-environmental {
+    box-shadow: var(--shadow-environmental);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .animate-counter {
+    animation: counter 2s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes counter {
+  from { opacity: 0; transform: translateY(20px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+  50% { box-shadow: 0 0 30px hsl(var(--primary) / 0.6); }
 }
