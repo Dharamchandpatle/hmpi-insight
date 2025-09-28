@@ -11,7 +11,6 @@ import {
     Menu,
     Settings,
     Upload,
-    User,
     X
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
