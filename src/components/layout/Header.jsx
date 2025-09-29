@@ -1,16 +1,16 @@
-import { motion } from 'framer-motion';
-import { Bell, Moon, Sun, LogOut, User, AlertTriangle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/hooks/useAuth';
-import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Bell, LogOut, Moon, Sun, User } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export const Header = () => {
   const { user, logout } = useAuth();
@@ -87,9 +87,9 @@ export const Header = () => {
             className="h-9 w-9 p-0 hover:bg-muted"
           >
             {darkMode ? (
-              <Sun className="w-4 h-4" />
+              <Sun className="w-4 h-4 icon-accent" />
             ) : (
-              <Moon className="w-4 h-4" />
+              <Moon className="w-4 h-4 icon-accent" />
             )}
           </Button>
 
@@ -99,7 +99,7 @@ export const Header = () => {
             size="sm"
             className="h-9 w-9 p-0 hover:bg-muted relative"
           >
-            <Bell className="w-4 h-4" />
+            <Bell className="w-4 h-4 icon-accent" />
             {notifications > 0 && (
               <Badge 
                 className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-highPollution text-highPollution-foreground flex items-center justify-center"
@@ -117,7 +117,7 @@ export const Header = () => {
                 className="flex items-center space-x-2 h-9 px-3 hover:bg-muted"
               >
                 <div className="w-6 h-6 bg-gradient-environmental rounded-full flex items-center justify-center">
-                  <User className="w-3 h-3 text-accent-foreground" />
+                  <User className="w-3 h-3 text-accent-foreground icon-accent" />
                 </div>
                 <span className="text-sm font-medium text-foreground">
                   {user?.name?.split(' ')[0]}
@@ -134,11 +134,11 @@ export const Header = () => {
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <User className="w-4 h-4 mr-2" />
+                <User className="w-4 h-4 mr-2 icon-accent" />
                 Profile Settings
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell className="w-4 h-4 mr-2" />
+                <Bell className="w-4 h-4 mr-2 icon-accent" />
                 Notifications
                 <Badge variant="secondary" className="ml-auto">
                   {notifications}
@@ -149,7 +149,7 @@ export const Header = () => {
                 onClick={handleLogout}
                 className="text-destructive focus:text-destructive"
               >
-                <LogOut className="w-4 h-4 mr-2" />
+                <LogOut className="w-4 h-4 mr-2 icon-accent" />
                 Sign Out
               </DropdownMenuItem>
             </DropdownMenuContent>

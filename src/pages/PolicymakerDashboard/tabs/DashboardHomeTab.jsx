@@ -3,16 +3,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { dummyWaterSamples } from '@/data/dummyData';
 import { motion } from 'framer-motion';
 import {
-    AlertTriangle,
-    BarChart3,
-    Calendar,
-    CheckCircle,
-    Droplets,
-    FileText,
-    MapPin,
-    Shield,
-    TrendingUp,
-    XCircle
+  AlertTriangle,
+  BarChart3,
+  Calendar,
+  CheckCircle,
+  Droplets,
+  FileText,
+  MapPin,
+  Shield,
+  TrendingUp,
+  XCircle
 } from 'lucide-react';
 import { CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -189,7 +189,7 @@ const DashboardHomeTab = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
               <CardTitle className="text-sm font-semibold text-slate-900 dark:text-white">Total Samples</CardTitle>
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-lg">
                 <Droplets className="h-5 w-5 text-white" />
               </div>
             </CardHeader>
@@ -199,7 +199,7 @@ const DashboardHomeTab = () => {
                 Across {policyMetrics.regionsMonitored} regions
               </p>
               <div className="mt-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
-                <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style={{ width: '100%' }}></div>
+                <div className="bg-gradient-primary h-2 rounded-full" style={{ width: '100%' }}></div>
               </div>
             </CardContent>
           </Card>
@@ -226,7 +226,7 @@ const DashboardHomeTab = () => {
                 {safeSamples} out of {totalSamples} samples
               </p>
               <div className="mt-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
-                <div className="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full" style={{ width: `${safePercentage}%` }}></div>
+                <div className="bg-gradient-environmental h-2 rounded-full" style={{ width: `${safePercentage}%` }}></div>
               </div>
             </CardContent>
           </Card>
@@ -243,7 +243,7 @@ const DashboardHomeTab = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
               <CardTitle className="text-sm font-semibold text-slate-900 dark:text-white">Moderate Risk</CardTitle>
-              <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-moderate rounded-xl flex items-center justify-center shadow-lg">
                 <AlertTriangle className="h-5 w-5 text-white" />
               </div>
             </CardHeader>
@@ -253,7 +253,7 @@ const DashboardHomeTab = () => {
                 {moderateSamples} samples require attention
               </p>
               <div className="mt-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
-                <div className="bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style={{ width: `${moderatePercentage}%` }}></div>
+                <div className="bg-gradient-moderate h-2 rounded-full" style={{ width: `${moderatePercentage}%` }}></div>
               </div>
             </CardContent>
           </Card>
@@ -270,7 +270,7 @@ const DashboardHomeTab = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
               <CardTitle className="text-sm font-semibold text-slate-900 dark:text-white">High Risk</CardTitle>
-              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-high-risk rounded-xl flex items-center justify-center shadow-lg">
                 <XCircle className="h-5 w-5 text-white" />
               </div>
             </CardHeader>
@@ -280,7 +280,7 @@ const DashboardHomeTab = () => {
                 {highRiskSamples} samples need immediate action
               </p>
               <div className="mt-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
-                <div className="bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full" style={{ width: `${highRiskPercentage}%` }}></div>
+                <div className="bg-gradient-high-risk h-2 rounded-full" style={{ width: `${highRiskPercentage}%` }}></div>
               </div>
             </CardContent>
           </Card>

@@ -1,3 +1,4 @@
+import MapView from '@/components/MapView';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
@@ -8,8 +9,6 @@ import {
   Droplets,
   Facebook,
   Github,
-  Home,
-  Info,
   Linkedin,
   Mail,
   MapPin,
@@ -66,6 +65,7 @@ const Homepage = () => {
   const menuItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'Map View', href: '#mapview' },
     { name: 'Features', href: '#features' },
     { name: 'Dashboard', href: '#dashboard' },
     { name: 'Contact', href: '#contact' }
@@ -82,20 +82,19 @@ const Homepage = () => {
     <div className="min-h-screen bg-background text-foreground">
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-background/70 backdrop-blur-lg shadow-md border-b border-border'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+            ? 'bg-background/70 backdrop-blur-lg shadow-md border-b border-[#e12454]'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center space-x-2">
               <div className="w-9 h-9 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md">
-                <Droplets className="w-5 h-5 text-primary-foreground" />
+                <Droplets className="w-5 h-5 text-[#e12454] icon-accent" />
               </div>
-              <span className="text-xl font-bold">HMPI Monitor</span>
+              <span className="text-xl font-bold text-[#223a66]">HMPI Monitor</span>
             </div>
 
             {/* Desktop Menu */}
@@ -104,7 +103,18 @@ const Homepage = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="relative font-medium text-muted-foreground hover:text-primary transition-colors after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 hover:after:w-full after:transition-all"
+                  onClick={(e) => {
+                    // Smooth scroll behavior for internal anchors
+                    if (item.href.startsWith('#')) {
+                      e.preventDefault();
+                      const el = document.querySelector(item.href);
+                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      setIsMenuOpen(false);
+                    }
+                  }}
+                  className="relative font-medium text-muted-foreground hover:text-[#e12454] transition-colors 
+                       after:absolute after:w-0 after:h-0.5 after:bg-[#e12454] after:left-0 after:-bottom-1 
+                       hover:after:w-full after:transition-all"
                 >
                   {item.name}
                 </a>
@@ -113,24 +123,13 @@ const Homepage = () => {
 
             {/* Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button
-                variant="outline"
-                onClick={() => navigate('/')}
-                className="hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                Login
-              </Button>
-              <Button
-                onClick={() => navigate('/')}
-                className="bg-gradient-primary text-primary-foreground hover:shadow-lg hover:scale-105 transition-all"
-              >
-                Get Started
-              </Button>
+              <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-primary hover:text-primary-foreground transition-all" > Login </Button>
+              <Button onClick={() => navigate('/')} className="btn-primary text-primary-foreground hover:shadow-lg hover:scale-105 transition-all" > Get Started </Button>
             </div>
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 rounded-md text-muted-foreground hover:text-primary"
+              className="md:hidden p-2 rounded-md text-muted-foreground hover:text-[#e12454]"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -143,24 +142,31 @@ const Homepage = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border shadow-lg"
+              className="md:hidden bg-background/95 backdrop-blur-lg border-t border-[#e12454] shadow-lg"
             >
               <div className="px-4 py-4 space-y-2">
                 {menuItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="block px-3 py-2 rounded-md text-muted-foreground hover:text-primary hover:bg-muted/30 transition-all"
+                    className="block px-3 py-2 rounded-md text-muted-foreground hover:text-[#e12454] hover:bg-[#f4f9fc]/30 transition-all"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
                   </a>
                 ))}
                 <div className="flex flex-col space-y-3 pt-4">
-                  <Button variant="outline" onClick={() => navigate('/')}>
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate('/')}
+                    className="rounded-full hover:bg-[#e12454] hover:text-white transition-all"
+                  >
                     Login
                   </Button>
-                  <Button onClick={() => navigate('/')} className="bg-gradient-primary">
+                  <Button
+                    onClick={() => navigate('/')}
+                    className="btn-primary text-[#223a66] hover:bg-[#e12454] hover:shadow-lg hover:scale-105 transition-all rounded-full"
+                  >
                     Get Started
                   </Button>
                 </div>
@@ -171,11 +177,22 @@ const Homepage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900/10 via-green-900/10 to-teal-900/10"
-      >
-        <div className="text-center max-w-4xl px-6">
+      <section id="home" className="relative min-h-screen flex items-center justify-center">
+        {/* Background image layer (blurred) */}
+        <div
+          aria-hidden
+          className="absolute inset-0 overflow-hidden"
+        >
+          <img
+            src="https://e0.pxfuel.com/wallpapers/205/764/desktop-wallpaper-drink-water-every-day-its-healthy-drinking-water.jpg"
+            alt="Drinking water background"
+            className="w-full h-full object-cover transform scale-105 filter blur-sm brightness-75"
+          />
+          {/* Color tint overlay to improve text contrast */}
+          <div className="absolute inset-0 bg-[rgba(244,249,252,0.45)] backdrop-blur-sm"></div>
+        </div>
+
+        <div className="relative text-center max-w-4xl px-6 z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -183,7 +200,7 @@ const Homepage = () => {
             className="text-5xl md:text-7xl font-extrabold leading-tight mb-6"
           >
             Automated Heavy Metal
-            <span className="block text-transparent bg-clip-text bg-gradient-primary drop-shadow-md">
+            <span className="block text-primary drop-shadow-md">
               Pollution Monitoring
             </span>
           </motion.h1>
@@ -200,9 +217,9 @@ const Homepage = () => {
             <Button
               size="lg"
               onClick={() => navigate('/')}
-              className="bg-gradient-primary hover:shadow-lg hover:scale-105 transition-all px-8 py-3 text-lg"
+              className="btn-primary hover:shadow-lg hover:scale-105 transition-all px-8 py-3 text-lg"
             >
-              Get Started <ArrowRight className="w-5 h-5 ml-2" />
+              Get Started <ArrowRight className="w-5 h-5 ml-2 icon-accent" />
             </Button>
             <Button
               size="lg"
@@ -214,9 +231,12 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
+      {/* Map View (new section) */}
+      <section id="mapview" className="py-24" style={{ backgroundColor: '#f4f9fc' }}>
+        <MapView />
+      </section>
       {/* Features */}
-      <section id="features" className="py-24 bg-muted/20">
+      <section id="features" className="py-24" style={{ backgroundColor: '#f4f9fc' }}>
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -225,8 +245,13 @@ const Homepage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold mb-4">Powerful Features</h2>
-            <p className="text-lg text-muted-foreground">Technology-driven insights for environmental monitoring</p>
+            <h2 className="text-4xl font-bold mb-4 text-primary border-b-4 border-[#e12454] inline-block pb-2">
+              Powerful Features
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Technology-driven insights for environmental monitoring
+            </p>
+
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -244,7 +269,7 @@ const Homepage = () => {
                   <Card className="rounded-2xl shadow-lg border border-border/40 bg-gradient-to-br from-background to-muted/30 hover:shadow-xl transition-all h-full">
                     <CardHeader className="text-center">
                       <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-md">
-                        <Icon className="w-8 h-8 text-primary-foreground" />
+                        <Icon className="w-8 h-8 text-primary-foreground icon-accent" />
                       </div>
                       <CardTitle>{feature.title}</CardTitle>
                     </CardHeader>
@@ -260,18 +285,23 @@ const Homepage = () => {
       </section>
 
       {/* About */}
-      <section id="about" className="py-24">
+      <section id="about" className="py-24" style={{ backgroundColor: '#f4f9fc' }}>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}>
-            <div className="w-full h-96 bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl flex items-center justify-center shadow-inner">
-              <Droplets className="w-24 h-24 text-primary mb-4" />
+            <div className="w-full h-96 rounded-2xl overflow-hidden shadow-inner">
+              <img
+                src="https://i.pinimg.com/736x/09/3d/3a/093d3a4d1bbe1202491ebd06214a1f9e.jpg"
+                alt="Clean water flowing"
+                loading="lazy"
+                className="w-full h-full object-cover object-center"
+              />
             </div>
           </motion.div>
 
           {/* Right */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}>
-            <h2 className="text-4xl font-bold mb-6">Why Groundwater Pollution Monitoring Matters</h2>
+            <h2 className="text-4xl font-bold mb-6 text-primary">Why Groundwater Pollution Monitoring Matters</h2>
             <div className="space-y-4 text-muted-foreground text-lg">
               <p>
                 Heavy metal pollution in groundwater poses a significant threat to public health and environmental
@@ -284,21 +314,23 @@ const Homepage = () => {
                 Our automated monitoring system ensures continuous, accurate data collection and analysis...
               </p>
             </div>
-            <Button className="mt-8 bg-gradient-primary hover:scale-105 transition-all">
-              Learn More <ChevronRight className="w-5 h-5 ml-2" />
+            <Button className="mt-8 btn-primary hover:scale-105 transition-all">
+              Learn More <ChevronRight className="w-5 h-5 ml-2 icon-accent" />
             </Button>
           </motion.div>
         </div>
       </section>
 
+
+
       {/* Footer */}
-      <footer className="bg-muted/30 border-t border-border mt-12">
+      <footer className="border-t border-border mt-12" style={{ backgroundColor: '#f4f9fc' }}>
         <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
               <div className="w-9 h-9 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md mr-2">
-                <Droplets className="w-5 h-5 text-primary-foreground" />
+                <Droplets className="w-5 h-5 text-primary-foreground icon-accent" />
               </div>
               <span className="text-lg font-bold">HMPI Monitor</span>
             </div>

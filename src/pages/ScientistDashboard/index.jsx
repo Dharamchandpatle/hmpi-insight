@@ -1,17 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import {
-    BarChart3,
-    Bell,
-    Home,
-    LogOut,
-    MapPin,
-    Menu,
-    Settings,
-    Upload,
-    X
+  BarChart3,
+  Home,
+  LogOut,
+  MapPin,
+  Menu,
+  Settings,
+  Upload,
+  User
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -118,174 +116,148 @@ const ScientistDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      {/* Sidebar */}
-      <motion.div
-        className={`fixed left-0 top-0 h-full z-50 transition-all duration-300 ${
-          isSidebarOpen ? 'w-64' : 'w-0 md:w-64'
-        }`}
-        animate={{ width: isSidebarOpen ? 256 : window.innerWidth >= 768 ? 256 : 0 }}
-      >
-        <div className="h-full backdrop-blur-xl bg-white/80 dark:bg-slate-900/80 border-r border-white/20 dark:border-slate-700/50 shadow-2xl">
-          <div className="flex flex-col h-full">
-            {/* Sidebar Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/10 dark:border-slate-700/50">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <BarChart3 className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="font-bold text-lg bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                    HMPI Insight
-                  </h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Scientist Portal</p>
-                </div>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsSidebarOpen(false)}
-                className="md:hidden hover:bg-white/10 dark:hover:bg-slate-800/50"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navbar */}
+      <nav className="bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
+              <Menu className="h-5 w-5 icon-accent" />
+            </Button>
 
-            {/* User Info */}
-            <div className="p-6 border-b border-white/10 dark:border-slate-700/50">
-              <div className="flex items-center space-x-4">
-                <div className="relative">
-                  <Avatar className="w-12 h-12 ring-2 ring-blue-500/20 dark:ring-blue-400/20">
-                    <AvatarImage src="/placeholder.svg" alt="Dr. Michael Chen" />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-semibold">
-                      MC
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full"></div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-slate-900 dark:text-white truncate">Dr. Michael Chen</p>
-                  <Badge variant="secondary" className="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800">
-                    Scientist
-                  </Badge>
-                </div>
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <BarChart3 className="h-8 w-8 text-primary icon-accent" />
+              <div>
+                <h1 className="text-lg font-semibold text-gray-900">HMPI Scientist</h1>
+                <p className="text-xs text-muted-foreground">Analysis & Research</p>
               </div>
             </div>
+          </div>
 
-            {/* Navigation Menu */}
-            <nav className="flex-1 p-4 space-y-2">
-              {menuItems.map((item) => {
-                const Icon = item.icon;
-                const isActive = activeTab === item.id;
-                return (
-                  <motion.button
-                    key={item.id}
-                    onClick={() => handleTabChange(item.id)}
-                    className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl text-left transition-all duration-200 group ${
-                      isActive
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
-                        : 'hover:bg-white/60 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:shadow-md'
-                    }`}
-                    whileHover={{ scale: 1.02, x: 4 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className={`p-2 rounded-lg transition-colors ${
-                      isActive
-                        ? 'bg-white/20'
-                        : 'bg-slate-100 dark:bg-slate-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50'
-                    }`}>
-                      <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-600 dark:text-slate-400'}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className={`font-medium text-sm truncate ${isActive ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+          {/* User info and logout */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-2">
+              <User className="h-4 w-4 text-muted-foreground icon-accent" />
+              <span className="text-sm font-medium">Dr. Michael Chen</span>
+            </div>
+            <Button variant="outline" size="sm" onClick={() => navigate('/')}>
+              <LogOut className="mr-2 h-4 w-4 icon-accent" />
+              Logout
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setIsSidebarOpen(false)} />
+          <div className="fixed left-0 top-0 h-full w-64 bg-white shadow-lg">
+            <div className="flex flex-col h-full">
+              {/* Logo */}
+              <div className="p-6 border-b">
+                <h2 className="text-xl font-bold text-primary">HMPI Scientist</h2>
+                <p className="text-sm text-muted-foreground">Analysis & Research</p>
+              </div>
+
+              {/* Mobile Sidebar Menu */}
+              <div className="flex-1 p-4">
+                <nav className="space-y-2">
+                  {menuItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Button
+                        key={item.id}
+                        variant={activeTab === item.id ? "default" : "ghost"}
+                        className="w-full justify-start"
+                        onClick={() => handleTabChange(item.id)}
+                      >
+                        <Icon className="mr-3 h-4 w-4" />
                         {item.label}
-                      </p>
-                      <p className={`text-xs truncate ${isActive ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'}`}>
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.button>
-                );
-              })}
-            </nav>
-
-            {/* Logout */}
-            <div className="p-4 border-t border-white/10 dark:border-slate-700/50">
-              <Button
-                variant="ghost"
-                className="w-full justify-start hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors"
-                onClick={() => navigate('/')}
-              >
-                <LogOut className="w-4 h-4 mr-3" />
-                <span className="font-medium">Logout</span>
-              </Button>
+                      </Button>
+                    );
+                  })}
+                </nav>
+              </div>
             </div>
           </div>
         </div>
-      </motion.div>
+      )}
 
-      {/* Main Content */}
-      <div className={`transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : 'ml-0 md:ml-64'}`}>
-        {/* Header */}
-        <header className="backdrop-blur-xl bg-white/80 dark:bg-slate-900/80 border-b border-white/20 dark:border-slate-700/50 shadow-lg sticky top-0 z-40">
-          <div className="flex items-center justify-between px-6 py-4">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="md:hidden hover:bg-white/10 dark:hover:bg-slate-800/50 rounded-lg"
-              >
-                <Menu className="w-5 h-5" />
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                  Scientist Dashboard
-                </h1>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Heavy Metal Pollution Index Analysis Platform
-                </p>
-              </div>
+      <div className="flex">
+        {/* Desktop Sidebar */}
+        <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col">
+          <div className="p-6 border-b">
+            <h2 className="text-xl font-bold text-primary">Navigation</h2>
+          </div>
+
+          <nav className="flex-1 p-4">
+            <div className="space-y-2">
+              {menuItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Button
+                    key={item.id}
+                    variant={activeTab === item.id ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => handleTabChange(item.id)}
+                  >
+                    <Icon className="mr-3 h-4 w-4" />
+                    {item.label}
+                  </Button>
+                );
+              })}
             </div>
+          </nav>
 
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" size="sm" className="hover:bg-white/10 dark:hover:bg-slate-800/50 rounded-lg relative">
-                <Bell className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </Button>
-              <Avatar className="w-10 h-10 ring-2 ring-blue-500/20 dark:ring-blue-400/20">
-                <AvatarImage src="/placeholder.svg" alt="Dr. Michael Chen" />
-                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-semibold">
+          {/* User Profile Section */}
+          <div className="p-4 border-t">
+            <div className="flex items-center space-x-3 mb-3">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src="/placeholder.svg" alt="Scientist" />
+                <AvatarFallback className="bg-primary text-primary-foreground font-bold">
                   MC
                 </AvatarFallback>
               </Avatar>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-gray-900 truncate">
+                  Dr. Michael Chen
+                </p>
+                <p className="text-xs text-muted-foreground truncate">
+                  Research Scientist
+                </p>
+              </div>
             </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full"
+              onClick={() => navigate('/')}
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
+            </Button>
           </div>
-        </header>
+        </aside>
 
-        {/* Page Content */}
-        <main className="p-6 min-h-[calc(100vh-80px)]">
+        {/* Main Content */}
+        <main className="flex-1 p-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto space-y-6"
+            transition={{ duration: 0.3 }}
           >
             {renderTabContent()}
           </motion.div>
         </main>
       </div>
-
-      {/* Mobile Overlay */}
-      {isSidebarOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
     </div>
   );
 };

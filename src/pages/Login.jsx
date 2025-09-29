@@ -107,8 +107,8 @@ const Login = () => {
         >
           <div className="flex items-center justify-center mb-4">
             <Link to="/homepage" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-              <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-glow">
-                <Droplets className="w-8 h-8 text-primary-foreground" />
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-glow">
+                <Droplets className="w-8 h-8 text-primary-foreground icon-accent" />
               </div>
             </Link>
           </div>
@@ -138,7 +138,7 @@ const Login = () => {
             <Card className="bg-gradient-card shadow-card border-border/50">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Shield className="w-5 h-5 text-primary" />
+                  <Shield className="w-5 h-5 text-primary icon-accent" />
                   <span>Select Your Role</span>
                 </CardTitle>
                 <CardDescription>
@@ -168,7 +168,7 @@ const Login = () => {
                       >
                         <div className="flex items-center space-x-4 w-full">
                           <div className={`w-10 h-10 ${role.color} rounded-lg flex items-center justify-center`}>
-                            <Icon className="w-5 h-5 text-white" />
+                            <Icon className="w-5 h-5 text-white icon-accent" />
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center space-x-2">
@@ -203,7 +203,7 @@ const Login = () => {
             <Card className="bg-gradient-card shadow-card border-border/50">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <User className="w-5 h-5 text-primary" />
+                  <User className="w-5 h-5 text-primary icon-accent" />
                   <span>Authentication</span>
                 </CardTitle>
                 <CardDescription>
@@ -254,9 +254,9 @@ const Login = () => {
                   className="w-full bg-gradient-primary text-primary-foreground shadow-environmental hover:shadow-glow"
                 >
                   {loading ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin icon-accent" />
                   ) : (
-                    <ArrowRight className="w-4 h-4 mr-2" />
+                    <ArrowRight className="w-4 h-4 mr-2 icon-accent" />
                   )}
                   {loading ? 'Authenticating...' : 'Access Dashboard'}
                 </Button>

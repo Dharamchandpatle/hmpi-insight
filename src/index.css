@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Exo:500,600,700|Roboto&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,134 +10,134 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Environmental Professional Theme */
-    --background: 215 25% 97%;
-    --foreground: 215 20% 12%;
+    /* Medic - Modern Medical / Healthcare Theme (based on Medic template) */
+    /* Fonts */
+    --font-sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Exo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    /* Background & Text */
+    --background: 210 67% 97%;            /* #f4f9fc - second background color */
+    --foreground: 210 18% 30%;            /* muted dark blue-gray text (#6F8BA4-ish) */
 
     --card: 0 0% 100%;
-    --card-foreground: 215 20% 12%;
+    --card-foreground: 210 18% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 20% 12%;
+    --popover-foreground: 210 18% 18%;
 
-    /* Deep Blue Primary - Professional & Water-related */
-    --primary: 215 85% 45%;
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 215 75% 55%;
+    /* Primary (Deep Medic Blue) */
+    /* #223a66 -> approx hsl(219 50% 27%) */
+    --primary: 219 50% 27%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 219 45% 40%;
 
-    /* Teal Secondary - Environmental & Safe */
-    --secondary: 180 45% 92%;
-    --secondary-foreground: 180 85% 25%;
+    /* Accent (Medic Pink/Coral) */
+    /* #e12454 -> approx hsl(345 76% 51%) */
+    --accent: 345 76% 51%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 215 15% 94%;
-    --muted-foreground: 215 12% 45%;
+    /* Secondary (soft blue-teal accents) */
+    --secondary: 195 40% 92%;
+    --secondary-foreground: 195 75% 18%;
 
-    /* Environmental Accent - Fresh & Clean */
-    --accent: 165 85% 88%;
-    --accent-foreground: 165 85% 25%;
+    --muted: 210 14% 95%;
+    --muted-foreground: 210 12% 45%;
 
-    /* Pollution Indicators */
-    --safe: 142 75% 45%;
-    --safe-foreground: 0 0% 98%;
+    /* Status indicators */
+    --safe: 142 65% 35%;
+    --safe-foreground: 0 0% 100%;
     --moderate: 35 90% 55%;
-    --moderate-foreground: 0 0% 98%;
-    --high-pollution: 355 85% 55%;
-    --high-pollution-foreground: 0 0% 98%;
+    --moderate-foreground: 0 0% 100%;
+    --high-pollution: 345 76% 51%;
+    --high-pollution-foreground: 0 0% 100%;
 
-    --destructive: 355 85% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 345 76% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 15% 88%;
-    --input: 215 15% 92%;
-    --ring: 215 85% 45%;
+    --border: 210 16% 90%;
+    --input: 210 16% 94%;
+    --ring: 219 45% 40%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(215 85% 45%), hsl(215 75% 55%));
-    --gradient-environmental: linear-gradient(135deg, hsl(165 85% 45%), hsl(180 75% 45%));
-    --gradient-background: linear-gradient(180deg, hsl(215 25% 98%), hsl(215 20% 95%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(215 15% 98%));
+    --gradient-primary: linear-gradient(135deg, hsl(219 50% 27%), hsl(219 45% 40%));
+    --gradient-environmental: linear-gradient(135deg, hsl(165 75% 45%), hsl(195 60% 45%));
+    --gradient-moderate: linear-gradient(135deg, hsl(45 86% 58%), hsl(25 95% 53%));
+    --gradient-high-risk: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
+    --gradient-background: linear-gradient(180deg, hsl(217 20% 98%), hsl(217 18% 96%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 16% 96%));
 
     /* Shadows */
-    --shadow-environmental: 0 10px 30px -10px hsl(215 85% 45% / 0.2);
-    --shadow-card: 0 4px 20px -4px hsl(215 25% 25% / 0.1);
-    --shadow-glow: 0 0 30px hsl(215 75% 55% / 0.3);
+    --shadow-environmental: 0 8px 30px -10px hsl(219 50% 27% / 0.12);
+    --shadow-card: 0 4px 20px -4px hsl(210 16% 20% / 0.06);
+    --shadow-glow: 0 0 30px hsl(219 45% 40% / 0.18);
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 210 18% 22%;
+    --sidebar-primary: 219 50% 27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 16% 96%;
+    --sidebar-accent-foreground: 210 18% 18%;
+    --sidebar-border: 210 16% 92%;
+    --sidebar-ring: 219 45% 40%;
   }
 
   .dark {
-    /* Dark Environmental Theme */
-    --background: 215 25% 8%;
-    --foreground: 215 15% 88%;
+    /* Medic - Dark variant */
+    --background: 217 20% 10%;
+    --foreground: 210 18% 92%;
 
-    --card: 215 25% 10%;
-    --card-foreground: 215 15% 88%;
+    --card: 217 20% 12%;
+    --card-foreground: 210 18% 92%;
 
-    --popover: 215 25% 10%;
-    --popover-foreground: 215 15% 88%;
+    --popover: 217 20% 12%;
+    --popover-foreground: 210 18% 92%;
 
-    --primary: 215 75% 55%;
-    --primary-foreground: 215 25% 8%;
-    --primary-glow: 215 85% 65%;
+    --primary: 219 45% 45%;
+    --primary-foreground: 210 18% 98%;
+    --primary-glow: 219 60% 60%;
 
-    --secondary: 215 25% 15%;
-    --secondary-foreground: 215 15% 88%;
+    --secondary: 195 35% 18%;
+    --secondary-foreground: 210 18% 92%;
 
-    --muted: 215 25% 12%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 217 20% 12%;
+    --muted-foreground: 210 18% 75%;
 
-    --accent: 165 75% 35%;
-    --accent-foreground: 215 15% 88%;
+    --accent: 345 76% 58%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Dark Mode Pollution Indicators */
-    --safe: 142 65% 45%;
-    --safe-foreground: 0 0% 98%;
-    --moderate: 35 80% 55%;
-    --moderate-foreground: 0 0% 98%;
-    --high-pollution: 355 75% 55%;
-    --high-pollution-foreground: 0 0% 98%;
+    --safe: 142 55% 36%;
+    --safe-foreground: 0 0% 100%;
+    --moderate: 35 70% 50%;
+    --moderate-foreground: 0 0% 100%;
+    --high-pollution: 345 70% 50%;
+    --high-pollution-foreground: 0 0% 100%;
 
-    --destructive: 355 75% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 345 70% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 18%;
-    --input: 215 25% 15%;
-    --ring: 215 75% 55%;
+    --border: 217 20% 18%;
+    --input: 217 20% 14%;
+    --ring: 219 60% 60%;
 
-    /* Dark Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(215 75% 55%), hsl(215 85% 65%));
-    --gradient-environmental: linear-gradient(135deg, hsl(165 75% 35%), hsl(180 65% 35%));
-    --gradient-background: linear-gradient(180deg, hsl(215 25% 8%), hsl(215 25% 12%));
-    --gradient-card: linear-gradient(145deg, hsl(215 25% 10%), hsl(215 25% 8%));
+    --gradient-primary: linear-gradient(135deg, hsl(219 45% 45%), hsl(219 60% 60%));
+    --gradient-environmental: linear-gradient(135deg, hsl(165 55% 35%), hsl(195 50% 28%));
+    --gradient-background: linear-gradient(180deg, hsl(217 20% 10%), hsl(217 20% 14%));
+    --gradient-card: linear-gradient(145deg, hsl(217 20% 12%), hsl(217 20% 10%));
 
-    /* Dark Shadows */
-    --shadow-environmental: 0 10px 30px -10px hsl(215 75% 55% / 0.3);
-    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
-    --shadow-glow: 0 0 30px hsl(215 85% 65% / 0.4);
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --shadow-environmental: 0 10px 30px -10px hsl(219 45% 45% / 0.22);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 30px hsl(219 60% 60% / 0.34);
+
+    --sidebar-background: 217 20% 12%;
+    --sidebar-foreground: 210 18% 92%;
+    --sidebar-primary: 219 45% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 217 20% 14%;
+    --sidebar-accent-foreground: 210 18% 92%;
+    --sidebar-border: 217 20% 14%;
+    --sidebar-ring: 219 60% 60%;
   }
 }
 
@@ -211,4 +213,139 @@ All colors MUST be HSL.
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
   50% { box-shadow: 0 0 30px hsl(var(--primary) / 0.6); }
+}
+
+/* === Project-wide component styles matching requested palette === */
+@layer components {
+  /* Base page backgrounds and typography */
+  body {
+    background-color: #f4f9fc; /* Background 1 */
+    color: #445066; /* Subtext as default */
+    font-family: 'Roboto', 'Exo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    color: #223a66; /* Headings */
+    font-family: 'Exo', 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+
+  p, .muted, small {
+    color: #445066; /* Subtext */
+  }
+
+  a {
+    color: #223a66;
+    transition: color 0.3s ease-in-out, text-decoration 0.2s ease;
+  }
+
+  a:hover {
+    color: #e12454;
+    text-decoration: none;
+  }
+
+  /* Buttons (rounded-full, primary/secondary variants) */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .6rem 1.25rem;
+    background-color: #223a66; /* Normal Button */
+    color: #fff;
+    border-radius: 9999px; /* fully rounded */
+    border: 1px solid transparent;
+    box-shadow: 0 6px 18px rgba(35,58,102,0.12);
+    transition: background-color 0.3s ease-in-out, transform 0.15s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover, .btn-primary:focus {
+    background-color: #e12454; /* Button Hover */
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: #223a66;
+    border-radius: 9999px;
+    padding: .5rem 1rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(225,36,84,0.06);
+    color: #e12454;
+  }
+
+  /* Icon accent utility */
+  .icon-accent, .icon-accent svg {
+    color: #e12454;
+    fill: currentColor;
+  }
+
+  /* Card styles */
+  .card {
+    background-color: #ffffff; /* Background 2 */
+    color: #445066;
+    border-radius: .75rem;
+    box-shadow: 0 6px 20px rgba(43,66,108,0.06);
+    border: 1px solid rgba(43,66,108,0.04);
+    padding: 1rem;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(43,66,108,0.12);
+  }
+
+  .card-secondary {
+    background-color: #2b426c; /* Secondary Component Color */
+    color: #ffffff;
+    border-radius: .75rem;
+    padding: 1rem;
+  }
+
+  /* Half-width bottom border accent (used as underline) */
+  .half-bottom-border {
+    position: relative;
+    padding-bottom: .75rem;
+  }
+
+  .half-bottom-border::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 3px;
+    background: #e12454; /* Half Bottom Border */
+    border-radius: 2px;
+  }
+
+  /* Divider using accent color but subtle */
+  .accent-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(225,36,84,0.0) 0%, #e12454 50%, rgba(225,36,84,0.0) 100%);
+    margin: 1rem 0;
+  }
+
+  /* Interactive/hover effects for links/cards */
+  .hover-elevate:hover {
+    transform: translateY(-6px);
+    transition: transform 0.25s ease;
+  }
+
+  /* Responsive typography tweaks */
+  @media (max-width: 768px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.15rem; }
+    .card { padding: .75rem; }
+  }
 }

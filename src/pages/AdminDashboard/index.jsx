@@ -2,35 +2,35 @@ import { Button } from '@/components/ui/button';
 import { dashboardStats } from '@/data/dummyData';
 import { motion } from 'framer-motion';
 import {
-    Activity,
-    AlertTriangle,
-    BarChart3,
-    FileText,
-    Home,
-    LogOut,
-    Map,
-    Menu,
-    Settings,
-    Upload,
-    User,
-    Users
+  Activity,
+  AlertTriangle,
+  BarChart3,
+  FileText,
+  Home,
+  LogOut,
+  Map,
+  Menu,
+  Settings,
+  Upload,
+  User,
+  Users
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import DashboardHomeTab from './tabs/DashboardHomeTab';
-import DataUploadTab from './tabs/DataUploadTab';
-import HMPITab from './tabs/HMPITab';
-import MapsTab from './tabs/MapsTab';
-import ReportsTab from './tabs/ReportsTab';
-import SettingsTab from './tabs/SettingsTab';
-import UsersManagementTab from './tabs/UsersManagementTab';
 import AlertManagementTab from './tabs/AlertManagementTab';
 import AnalyticsTab from './tabs/AnalyticsTab';
 import AuditLogsTab from './tabs/AuditLogsTab';
+import DashboardHomeTab from './tabs/DashboardHomeTab';
 import DataManagementTab from './tabs/DataManagementTab';
+import DataUploadTab from './tabs/DataUploadTab';
+import HMPITab from './tabs/HMPITab';
+import MapsTab from './tabs/MapsTab';
 import OverviewTab from './tabs/OverviewTab';
+import ReportsTab from './tabs/ReportsTab';
+import SettingsTab from './tabs/SettingsTab';
 import SystemSettingsTab from './tabs/SystemSettingsTab';
 import UserManagementTab from './tabs/UserManagementTab';
+import UsersManagementTab from './tabs/UsersManagementTab';
 
 const AdminDashboard = () => {
   const location = useLocation();
@@ -145,12 +145,12 @@ const AdminDashboard = () => {
               className="md:hidden"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5 icon-accent" />
             </Button>
 
             {/* Logo */}
             <div className="flex items-center space-x-2">
-              <Activity className="h-8 w-8 text-primary" />
+              <Activity className="h-8 w-8 text-primary icon-accent" />
               <div>
                 <h1 className="text-lg font-semibold text-gray-900">HMPI Admin</h1>
                 <p className="text-xs text-muted-foreground">Heavy Metal Pollution Index</p>
@@ -161,11 +161,11 @@ const AdminDashboard = () => {
           {/* Admin info and logout */}
           <div className="flex items-center space-x-4">
             <div className="hidden md:flex items-center space-x-2">
-              <User className="h-4 w-4 text-muted-foreground" />
+              <User className="h-4 w-4 text-muted-foreground icon-accent" />
               <span className="text-sm font-medium">Admin User</span>
             </div>
             <Button variant="outline" size="sm" onClick={() => navigate('/')}>
-              <LogOut className="mr-2 h-4 w-4" />
+              <LogOut className="mr-2 h-4 w-4 icon-accent" />
               Logout
             </Button>
           </div>

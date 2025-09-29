@@ -2,12 +2,13 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 // Main Pages
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import MapView from "./components/MapView";
 
 // Dashboard Pages
 import AdminDashboard from "./pages/AdminDashboard";
@@ -36,10 +37,14 @@ const App = () => (
       >
         <Routes>
           {/* Authentication Routes */}
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Homepage />} />
+
+          {/* Helpful aliases */}
+          <Route path="/about" element={<Homepage />} />
+          <Route path="/map" element={<MapView />} />
 
           {/* Public Routes */}
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
 
           {/* Protected Main Dashboard Routes */}
           {/* Note: Users are redirected to role-specific dashboards after login */}
@@ -76,6 +81,10 @@ const App = () => (
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
+          {/* Redirect base role paths to dashboard */}
+          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="/scientist" element={<Navigate to="/scientist/dashboard" replace />} />
+          <Route path="/policymaker" element={<Navigate to="/policymaker/dashboard" replace />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
