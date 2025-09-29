@@ -40,7 +40,6 @@ import { motion } from 'framer-motion';
 import {
     AlertTriangle,
     CheckCircle,
-    Clock,
     Eye,
     Filter,
     MoreHorizontal,
@@ -58,19 +57,15 @@ const AlertManagementTab = () => {
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
 
   const filteredAlerts = alerts.filter(alert => {
-    const matchesSearch = alert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const matchesSearch = alert.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          alert.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         alert.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || alert.status === statusFilter;
+                         alert.type.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'all' ||
+                         (statusFilter === 'read' && alert.read) ||
+                         (statusFilter === 'unread' && !alert.read);
     const matchesSeverity = severityFilter === 'all' || alert.severity === severityFilter;
     return matchesSearch && matchesStatus && matchesSeverity;
   });
-
-  const handleStatusChange = (alertId, newStatus) => {
-    setAlerts(alerts.map(alert =>
-      alert.id === alertId ? { ...alert, status: newStatus } : alert
-    ));
-  };
 
   const handleMarkAsRead = (alertId) => {
     setAlerts(alerts.map(alert =>
@@ -89,28 +84,24 @@ const AlertManagementTab = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'active': return 'bg-red-100 text-red-800';
-      case 'acknowledged': return 'bg-yellow-100 text-yellow-800';
-      case 'resolved': return 'bg-green-100 text-green-800';
+      case 'unread': return 'bg-blue-100 text-blue-800';
+      case 'read': return 'bg-gray-100 text-gray-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getStatusIcon = (status) => {
     switch (status) {
-      case 'active': return <AlertTriangle className="w-4 h-4" />;
-      case 'acknowledged': return <Clock className="w-4 h-4" />;
-      case 'resolved': return <CheckCircle className="w-4 h-4" />;
+      case 'unread': return <AlertTriangle className="w-4 h-4" />;
+      case 'read': return <CheckCircle className="w-4 h-4" />;
       default: return <XCircle className="w-4 h-4" />;
     }
   };
 
   const alertStats = {
     total: alerts.length,
-    active: alerts.filter(a => a.status === 'active').length,
-    acknowledged: alerts.filter(a => a.status === 'acknowledged').length,
-    resolved: alerts.filter(a => a.status === 'resolved').length,
-    unread: alerts.filter(a => !a.read).length
+    unread: alerts.filter(a => !a.read).length,
+    read: alerts.filter(a => a.read).length
   };
 
   return (
@@ -144,21 +135,10 @@ const AlertManagementTab = () => {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
-              <XCircle className="w-4 h-4 text-red-600" />
+              <AlertTriangle className="w-4 h-4 text-blue-600" />
               <div>
-                <p className="text-2xl font-bold">{alertStats.active}</p>
-                <p className="text-xs text-muted-foreground">Active</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center space-x-2">
-              <Clock className="w-4 h-4 text-yellow-600" />
-              <div>
-                <p className="text-2xl font-bold">{alertStats.acknowledged}</p>
-                <p className="text-xs text-muted-foreground">Acknowledged</p>
+                <p className="text-2xl font-bold">{alertStats.unread}</p>
+                <p className="text-xs text-muted-foreground">Unread</p>
               </div>
             </div>
           </CardContent>
@@ -168,19 +148,8 @@ const AlertManagementTab = () => {
             <div className="flex items-center space-x-2">
               <CheckCircle className="w-4 h-4 text-green-600" />
               <div>
-                <p className="text-2xl font-bold">{alertStats.resolved}</p>
-                <p className="text-xs text-muted-foreground">Resolved</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center space-x-2">
-              <Eye className="w-4 h-4 text-blue-600" />
-              <div>
-                <p className="text-2xl font-bold">{alertStats.unread}</p>
-                <p className="text-xs text-muted-foreground">Unread</p>
+                <p className="text-2xl font-bold">{alertStats.read}</p>
+                <p className="text-xs text-muted-foreground">Read</p>
               </div>
             </div>
           </CardContent>
@@ -215,9 +184,8 @@ const AlertManagementTab = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="acknowledged">Acknowledged</SelectItem>
-                <SelectItem value="resolved">Resolved</SelectItem>
+                <SelectItem value="unread">Unread</SelectItem>
+                <SelectItem value="read">Read</SelectItem>
               </SelectContent>
             </Select>
             <Select value={severityFilter} onValueChange={setSeverityFilter}>
@@ -251,11 +219,11 @@ const AlertManagementTab = () => {
                   <TableRow key={alert.id} className={!alert.read ? 'bg-blue-50/50' : ''}>
                     <TableCell className="font-medium">
                       <div className="flex items-center space-x-2">
-                        {getStatusIcon(alert.status)}
+                        {getStatusIcon(alert.read ? 'read' : 'unread')}
                         <div>
-                          <div className="font-medium">{alert.title}</div>
+                          <div className="font-medium">{alert.message}</div>
                           <div className="text-sm text-muted-foreground line-clamp-1">
-                            {alert.description}
+                            {alert.type}
                           </div>
                         </div>
                       </div>
@@ -267,8 +235,8 @@ const AlertManagementTab = () => {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge className={getStatusColor(alert.status)}>
-                        {alert.status}
+                      <Badge className={getStatusColor(alert.read ? 'read' : 'unread')}>
+                        {alert.read ? 'Read' : 'Unread'}
                       </Badge>
                     </TableCell>
                     <TableCell>{alert.timestamp}</TableCell>
@@ -297,16 +265,10 @@ const AlertManagementTab = () => {
                             </DropdownMenuItem>
                           )}
                           <DropdownMenuSeparator />
-                          {alert.status !== 'acknowledged' && (
-                            <DropdownMenuItem onClick={() => handleStatusChange(alert.id, 'acknowledged')}>
-                              <Clock className="mr-2 h-4 w-4" />
-                              Acknowledge
-                            </DropdownMenuItem>
-                          )}
-                          {alert.status !== 'resolved' && (
-                            <DropdownMenuItem onClick={() => handleStatusChange(alert.id, 'resolved')}>
+                          {!alert.read && (
+                            <DropdownMenuItem onClick={() => handleMarkAsRead(alert.id)}>
                               <CheckCircle className="mr-2 h-4 w-4" />
-                              Resolve
+                              Mark as Read
                             </DropdownMenuItem>
                           )}
                         </DropdownMenuContent>
@@ -325,8 +287,8 @@ const AlertManagementTab = () => {
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle className="flex items-center space-x-2">
-              {selectedAlert && getStatusIcon(selectedAlert.status)}
-              <span>{selectedAlert?.title}</span>
+              {selectedAlert && getStatusIcon(selectedAlert.read ? 'read' : 'unread')}
+              <span>{selectedAlert?.message}</span>
             </DialogTitle>
             <DialogDescription>
               Alert details and management options
@@ -347,8 +309,8 @@ const AlertManagementTab = () => {
                 </div>
                 <div>
                   <Label>Status</Label>
-                  <Badge className={getStatusColor(selectedAlert.status)}>
-                    {selectedAlert.status}
+                  <Badge className={getStatusColor(selectedAlert.read ? 'read' : 'unread')}>
+                    {selectedAlert.read ? 'Read' : 'Unread'}
                   </Badge>
                 </div>
                 <div>
@@ -357,9 +319,9 @@ const AlertManagementTab = () => {
                 </div>
               </div>
               <div>
-                <Label>Description</Label>
+                <Label>Details</Label>
                 <Textarea
-                  value={selectedAlert.description}
+                  value={`${selectedAlert.message}\n\nType: ${selectedAlert.type}`}
                   readOnly
                   className="mt-1"
                   rows={4}

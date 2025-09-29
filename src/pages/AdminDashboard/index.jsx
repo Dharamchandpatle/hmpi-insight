@@ -3,6 +3,7 @@ import { dashboardStats } from '@/data/dummyData';
 import { motion } from 'framer-motion';
 import {
     Activity,
+    AlertTriangle,
     BarChart3,
     FileText,
     Home,
@@ -23,6 +24,13 @@ import MapsTab from './tabs/MapsTab';
 import ReportsTab from './tabs/ReportsTab';
 import SettingsTab from './tabs/SettingsTab';
 import UsersManagementTab from './tabs/UsersManagementTab';
+import AlertManagementTab from './tabs/AlertManagementTab';
+import AnalyticsTab from './tabs/AnalyticsTab';
+import AuditLogsTab from './tabs/AuditLogsTab';
+import DataManagementTab from './tabs/DataManagementTab';
+import OverviewTab from './tabs/OverviewTab';
+import SystemSettingsTab from './tabs/SystemSettingsTab';
+import UserManagementTab from './tabs/UserManagementTab';
 
 const AdminDashboard = () => {
   const location = useLocation();
@@ -32,12 +40,19 @@ const AdminDashboard = () => {
   const tabRoutes = {
     '': 'dashboard', // default
     'dashboard': 'dashboard',
+    'overview': 'overview',
+    'analytics': 'analytics',
     'users': 'users',
+    'user-management': 'user-management',
     'upload': 'upload',
+    'data-management': 'data-management',
     'hmpi': 'hmpi',
     'maps': 'maps',
     'reports': 'reports',
-    'settings': 'settings'
+    'alerts': 'alerts',
+    'audit-logs': 'audit-logs',
+    'settings': 'settings',
+    'system-settings': 'system-settings'
   };
 
   // Get current tab from URL
@@ -66,12 +81,19 @@ const AdminDashboard = () => {
   // Sidebar menu items
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard Home', icon: Home },
+    { id: 'overview', label: 'System Overview', icon: Activity },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'users', label: 'Users Management', icon: Users },
+    { id: 'user-management', label: 'Advanced User Mgmt', icon: User },
     { id: 'upload', label: 'Data Upload', icon: Upload },
+    { id: 'data-management', label: 'Data Management', icon: FileText },
     { id: 'hmpi', label: 'HMPI Results', icon: BarChart3 },
     { id: 'maps', label: 'Maps & Visualizations', icon: Map },
     { id: 'reports', label: 'Reports', icon: FileText },
-    { id: 'settings', label: 'Settings', icon: Settings }
+    { id: 'alerts', label: 'Alert Management', icon: AlertTriangle },
+    { id: 'audit-logs', label: 'Audit Logs', icon: LogOut },
+    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'system-settings', label: 'System Settings', icon: Settings }
   ];
 
   // Render active tab content
@@ -79,18 +101,32 @@ const AdminDashboard = () => {
     switch (activeTab) {
       case 'dashboard':
         return <DashboardHomeTab />;
+      case 'overview':
+        return <OverviewTab />;
+      case 'analytics':
+        return <AnalyticsTab />;
       case 'users':
         return <UsersManagementTab />;
+      case 'user-management':
+        return <UserManagementTab />;
       case 'upload':
         return <DataUploadTab />;
+      case 'data-management':
+        return <DataManagementTab />;
       case 'hmpi':
         return <HMPITab />;
       case 'maps':
         return <MapsTab />;
       case 'reports':
         return <ReportsTab />;
+      case 'alerts':
+        return <AlertManagementTab />;
+      case 'audit-logs':
+        return <AuditLogsTab />;
       case 'settings':
         return <SettingsTab />;
+      case 'system-settings':
+        return <SystemSettingsTab />;
       default:
         return <DashboardHomeTab />;
     }
