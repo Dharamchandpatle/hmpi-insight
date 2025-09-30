@@ -19,7 +19,7 @@ import {
   X
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -123,8 +123,8 @@ const Homepage = () => {
 
             {/* Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-primary hover:text-primary-foreground transition-all" > Login </Button>
-              <Button onClick={() => navigate('/')} className="btn-primary text-primary-foreground hover:shadow-lg hover:scale-105 transition-all" > Get Started </Button>
+              <Button variant="outline" onClick={() => navigate('/login')} className="hover:bg-primary hover:text-primary-foreground transition-all" > Login </Button>
+              <Button onClick={() => navigate('/login')} className="btn-primary text-primary-foreground hover:shadow-lg hover:scale-105 transition-all" > Get Started </Button>
             </div>
 
             {/* Mobile menu button */}
@@ -216,7 +216,7 @@ const Homepage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/login')}
               className="btn-primary hover:shadow-lg hover:scale-105 transition-all px-8 py-3 text-lg"
             >
               Get Started <ArrowRight className="w-5 h-5 ml-2 icon-accent" />
@@ -224,6 +224,7 @@ const Homepage = () => {
             <Button
               size="lg"
               variant="outline"
+               onClick={() => navigate('/login')}
               className="px-8 py-3 text-lg hover:bg-muted hover:scale-105 transition-all"
             >
               Learn More
@@ -314,9 +315,9 @@ const Homepage = () => {
                 Our automated monitoring system ensures continuous, accurate data collection and analysis...
               </p>
             </div>
-            <Button className="mt-8 btn-primary hover:scale-105 transition-all">
+            <Link to={'/login'} className="mt-8 hover:text-white btn-primary hover:scale-105 transition-all">
               Learn More <ChevronRight className="w-5 h-5 ml-2 icon-accent" />
-            </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
